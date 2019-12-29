@@ -24,5 +24,5 @@ newmtl wire_115115115
 	Kd 0.6314 0.6314 0.6314
 	Ks 0.9900 0.9900 0.9900
 	Ke 0.0000 0.0000 0.0000
-	map_Ka 8.jpg
-	map_Kd 8.jpg
+	map_Ka ../mod/8.jpg
+	map_Kd ../mod/8.jpg

@@ -24,8 +24,8 @@ newmtl 15___Default
 	Kd 0.4157 0.4157 0.4157
 	Ks 0.6300 0.6300 0.6300
 	Ke 0.0000 0.0000 0.0000
-	map_Ka 3.jpg
-	map_Kd 3.jpg
+	map_Ka ../mod/3.jpg
+	map_Kd ../mod/3.jpg
 
 newmtl 19___Default
 	Ns 50.0000
@@ -38,8 +38,8 @@ newmtl 19___Default
 	Kd 0.4157 0.4157 0.4157
 	Ks 1.2150 1.2150 1.2150
 	Ke 0.0000 0.0000 0.0000
-	map_Ka 7.jpg
-	map_Kd 7.jpg
+	map_Ka ../mod/7.jpg
+	map_Kd ../mod/7.jpg
 
 newmtl 20___Default
 	Ns 50.0000
@@ -52,8 +52,8 @@ newmtl 20___Default
 	Kd 0.4196 0.4196 0.4196
 	Ks 1.2150 1.2150 1.2150
 	Ke 0.0000 0.0000 0.0000
-	map_Ka matal.jpg
-	map_Kd matal.jpg
+	map_Ka ../mod/matal.jpg
+	map_Kd ../mod/matal.jpg
 
 newmtl 18___Default
 	Ns 50.0000
@@ -66,8 +66,8 @@ newmtl 18___Default
 	Kd 0.4471 0.4471 0.4471
 	Ks 1.2150 1.2150 1.2150
 	Ke 0.0000 0.0000 0.0000
-	map_Ka 6.jpg
-	map_Kd 6.jpg
+	map_Ka ../mod/6.jpg
+	map_Kd ../mod/6.jpg
 
 newmtl 16___Default
 	Ns 60.0000
@@ -80,8 +80,8 @@ newmtl 16___Default
 	Kd 0.4549 0.4549 0.4549
 	Ks 1.2150 1.2150 1.2150
 	Ke 0.0000 0.0000 0.0000
-	map_Ka 4.jpg
-	map_Kd 4.jpg
+	map_Ka ../mod/4.jpg
+	map_Kd ../mod/4.jpg
 
 newmtl 17___Default
 	Ns 50.0000
@@ -94,8 +94,8 @@ newmtl 17___Default
 	Kd 0.4275 0.4275 0.4275
 	Ks 1.2150 1.2150 1.2150
 	Ke 0.0000 0.0000 0.0000
-	map_Ka 5.jpg
-	map_Kd 5.jpg
+	map_Ka ../mod/5.jpg
+	map_Kd ../mod/5.jpg
 
 newmtl 14___Default
 	Ns 40.0000
@@ -108,8 +108,8 @@ newmtl 14___Default
 	Kd 0.4588 0.4588 0.4588
 	Ks 0.9000 0.9000 0.9000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka 2.jpg
-	map_Kd 2.jpg
+	map_Ka ../mod/2.jpg
+	map_Kd ../mod/2.jpg
 
 newmtl wire_184155229
 	Ns 50.0000
@@ -122,8 +122,8 @@ newmtl wire_184155229
 	Kd 0.4745 0.4745 0.4745
 	Ks 1.0000 1.0000 1.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka 0.jpg
-	map_Kd 0.jpg
+	map_Ka ../mod/0.jpg
+	map_Kd ../mod/0.jpg
 
 newmtl 13___Default
 	Ns 60.0000
@@ -136,5 +136,5 @@ newmtl 13___Default
 	Kd 0.4471 0.4471 0.4471
 	Ks 0.4500 0.4500 0.4500
 	Ke 0.0000 0.0000 0.0000
-	map_Ka 1.jpg
-	map_Kd 1.jpg
+	map_Ka ../mod/1.jpg
+	map_Kd ../mod/1.jpg
