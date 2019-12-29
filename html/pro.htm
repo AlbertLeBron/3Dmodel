@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>油烟净化模型 - 案例v1.0</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+        body{
+            background:-webkit-radial-gradient(circle,#e3eafd,#6382b0 50%,#6180ae 100%);
+            background:radial-gradient(circle,#e3eafd,#6382b0 50%,#6180ae 100%);
+            background-size:100% 100%;
+            overflow: hidden;
+        }
+        #con{
+            height: 100%;
+            width: 100%;
+            white-space: nowrap;
+            transition: all 0.5s ease-in-out;
+            position: relative;
+        }
+        body[to='0'] #con{
+            transform: translateX(0);
+        }
+        body[to='1'] #con{
+            transform: translateX(-100%);
+        }
+        body[to='0'] #con iframe:nth-child(1),
+        body[to='1'] #con iframe:nth-child(2){
+            opacity: 1;
+        }
+        iframe{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            opacity: 0;
+            transition: all 0.5s;
+        }
+        #probar{
+            position: fixed;
+            width: 200px;
+            display: table;
+            left: 0;
+            top:0;
+            height: 100%;
+            z-index: 2;
+        }
+        #probar>div{
+            display: table-cell;
+            vertical-align: middle;
+            height: 100px;
+        }
+        body[to='0'] #probar span:nth-child(1),
+        body[to='1'] #probar span:nth-child(2){
+            transform: scale(1.5,1.5);
+            opacity: 1;
+        }
+        #probar span{
+            display: block;
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            background-size:100%;
+            margin: 25px auto;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body to='1'>
+    <div id="probar"><div><span style="background-image:url(p1.jpg)"></span><span style="background-image:url(p2.jpg)"></span></div></div>
+	<div id="con">
+        <iframe src="p1.htm"></iframe><iframe src="p2.htm"></iframe>
+    </div>
+</body>
+<script>
+    var prob = document.getElementById('probar').getElementsByTagName('span'), ifrm = document.getElementById('con').children, l = prob.length;
+    for(var i = 0;i<l;i++){
+        !(function(){
+            var n = i;
+            prob[n].addEventListener('click',function(){
+                document.body.setAttribute('to',n);
+                if(ifrm[n].contentWindow.flag){
+                    var tool = ifrm[n].contentWindow.document.getElementById('tool').children, tl = tool.length;
+                    for(var j=0;j<tl;j++){
+                        if(tool[j].getAttribute('s')=='1'){
+                            excEvent(tool[j],'click');
+                        }
+                    }
+                }else{
+                    ifrm[n].contentWindow.initMod(ifrm[n].contentWindow.map);
+                    ifrm[n].contentWindow.flag=1;
+                }
+            },false);
+        })();
+    }
+    ifrm[1].onload=function(){
+        excEvent(prob[1],'click');
+    }
+    function excEvent(el, event) {
+        if (document.createEvent) {
+            var e = document.createEvent("MouseEvents");
+            e.initEvent(event, true, true);
+            el.dispatchEvent(e);
+        } else if (el.fireEvent) {
+            el.fireEvent('on'+event);
+        }
+    }
+</script>
+</html> 
