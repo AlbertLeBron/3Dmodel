@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Threejs使用CubeCamera创建反光效果</title>
+    <style type="text/css">
+        html,body{margin:0;height:100%}body{background:-webkit-radial-gradient(circle,#e3eafd,#6382b0 50%,#6180ae 100%);background:radial-gradient(circle,#e3eafd,#6382b0 50%,#6180ae 100%);background-size:100% 100%;font-family:'\5FAE\8F6F\96C5\9ED1';-moz-user-select:-moz-none;-moz-user-select:none;-o-user-select:none;-khtml-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}canvas{display:block}.hotSpot{position:absolute;height:40px;width:40px;text-align:center;cursor:pointer;pointer-events:all}.hotSpot>span{display:block;height:8px;width:8px;border-radius:50%;background:rgba(254,4,30,.9);position:absolute;top:50%;left:50%;margin-left:-8px;border:4px solid #fff;box-shadow:0 0 0 3px rgba(0,0,0,0.1);transition:all .3s;margin-top:-8px;z-index:2}.hotSpot:before,.hotSpot:after{content:'';display:block;height:40px;width:40px;border-radius:25px;background:#2785fb;position:absolute;top:50%;margin-top:-20px;transform:scale(0);transform-origin:center center;animation:myfirst 1.5s;animation-iteration-count:infinite}.hotSpot:after{animation:myfirst 1.5s .4s;animation-iteration-count:1;animation-iteration-count:infinite}@keyframes myfirst{to{transform:scale(1.5);background:rgba(0,0,0,0)}}.des{position:absolute;width:260px;min-height:315px;border-radius:6px;background:rgba(0,0,0,0.9);padding:0 10px 10px 16px;box-sizing:border-box;top:4%;box-shadow:0 0 10px 3px #888;pointer-events:none;opacity:0;z-index:-1;left:10%;transform:translateX(150px);-webkit-transform:translateX(150px);transition:all .3s;display:block;margin-left:-320px;margin-top:-80px}.img{height:150px;width:150px;box-sizing:border-box;background:#fff;border:4px solid #030404;border-radius:50%;position:relative;margin-top:-50px;float:right;margin-right:-50px;background-repeat:no-repeat;background-size:100% auto;background-position:center center}.fname{height:68px;line-height:80px;overflow:hidden;color:#fff}.fname>span{height:100%;display:block;padding:0 20px 0 11p5x;font-size:22px;font-weight:bold;letter-spacing:2px;box-sizing:border-box;text-align:center}.ft{color:#f4c503;font-size:14px;float:left;width:100%;padding:0 10px;box-sizing:border-box;margin:6px 0;text-align:left}.farg{float:left;width:100%;margin:10px 0}.farg>span{display:inline-block;width:33.333%;color:#fff;text-align:center;box-sizing:border-box}.farg>span:not(:last-of-type){border-right:1px solid rgba(255,255,255,0.2)}.farg>span div:nth-child(1){font-family:fantasy;letter-spacing:1px}.farg>span div:nth-child(2){color:#aaa;font-size:13px}.hotSpot.active{z-index:2}.hotSpot.active .des{pointer-events:auto;opacity:1;z-index:2;transform:translateX(0);-webkit-transform:translateX(0)}.hotSpot.active>span{background:rgba(254,4,30,.6);border:4px solid rgba(0,0,0,0);box-shadow:0 0 0 20px rgba(254,4,30,.6)}.hotSpot.active:before,.hotSpot.active:after{animation:none}#tool{position:fixed;width:100%;bottom:60px;text-align:center}#tool>a{display:inline-block;height:80px;width:80px;line-height:80px;border-radius:50%;font-size:20px;background:#ddd;color:#000;cursor:pointer;margin:0 15px;box-shadow:0 0 0 6px rgba(255,255,255,0.2)}#tool>a[s='1']{box-shadow:0 0 0 6px rgba(255,129,0,0.59)}.hotSpot{position:absolute;height:40px;width:40px;text-align:center;cursor:pointer;pointer-events:all}.hotSpot>span{display:block;height:8px;width:8px;border-radius:50%;background:rgba(254,4,30,.9);position:absolute;top:50%;left:50%;margin-left:-8px;border:4px solid #fff;box-shadow:0 0 0 3px rgba(0,0,0,0.1);transition:all .4s ease-in-out;margin-top:-8px;z-index:2}.hotSpot:before,.hotSpot:after{content:'';display:block;height:40px;width:40px;border-radius:25px;background:#2785fb;position:absolute;top:50%;margin-top:-20px;transform:scale(0);transform-origin:center center;animation:myfirst 1.5s;animation-iteration-count:infinite}.hotSpot:after{animation:myfirst 1.5s .4s;animation-iteration-count:1;animation-iteration-count:infinite}@keyframes myfirst{to{transform:scale(1.5);background:rgba(0,0,0,0)}}.des{position:absolute;width:260px;min-height:315px;border-radius:6px;background:rgba(0,0,0,0.9);padding:0 10px 10px 16px;box-sizing:border-box;top:4%;box-shadow:0 0 10px 3px #888;pointer-events:none;opacity:0;z-index:-1;left:10%;transform:translateX(150px);-webkit-transform:translateX(150px);transition:all .6s ease-in-out;display:block;margin-left:-320px;margin-top:-80px}.img{height:150px;width:150px;box-sizing:border-box;background:#fff;border:4px solid #030404;border-radius:50%;position:relative;margin-top:-50px;float:right;margin-right:-50px;background-repeat:no-repeat;background-size:100% auto;background-position:center center}.fname{height:68px;line-height:80px;overflow:hidden;color:#fff}.fname>span{height:100%;display:block;padding:0 20px 0 11p5x;font-size:22px;font-weight:bold;letter-spacing:2px;box-sizing:border-box;text-align:center}.ft{color:#f4c503;font-size:14px;float:left;width:100%;padding:0 10px;box-sizing:border-box;margin:6px 0;text-align:left}.farg{float:left;width:100%;margin:10px 0}.farg>span{display:inline-block;width:33.333%;color:#fff;text-align:center;box-sizing:border-box}.farg>span:not(:last-of-type){border-right:1px solid rgba(255,255,255,0.2)}.farg>span div:nth-child(1){font-family:fantasy;letter-spacing:1px}.farg>span div:nth-child(2){color:#aaa;font-size:13px}.hotSpot.active{z-index:2}.hotSpot.active .des{pointer-events:auto;opacity:1;z-index:2;transform:translateX(0);-webkit-transform:translateX(0)}.hotSpot.active>span{background:rgba(254,4,30,.6);border:4px solid rgba(0,0,0,0);box-shadow:0 0 0 20px rgba(254,4,30,.6)}.hotSpot.active:before,.hotSpot.active:after{animation:none}#hotWrap{display:none}#hotWrap[s='1']{display:block}
+    </style>
+</head>
+
+<body onload="draw();" onselectstart="return false;" oncontextmenu="return false;">
+	<div id="tool"><a>尺 寸</a><a>热 点</a></div>
+</body>
+<script src="three.min.js"></script>
+<script src="OrbitControls.js"></script>
+<script src="tween.js"></script>
+<script src="CSS2DRender.js"></script>
+<script src="OBJLoader.js"></script>
+<script src="MTLLoader.js"></script>
+<script>
+        var renderer,renderer2D,renderEnabled,timeOut = null,myObjects,camera,scene,light,controls,spotLight,
+        depos={x:120,y:50,z:30},stpos={},hotSpot = [,,,,],tween = null,ele = null,parr=['',[5,'x',0.2],'','',[12,'z',-0.5]],prep=-1,nextp=-1;
+
+        function initRender() {
+            renderer = new THREE.WebGLRenderer({antialias: true,alpha:true});
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000,0.0);
+            renderer.shadowMap.enabled = true;
+            document.body.appendChild(renderer.domElement);
+
+            var hotSpotDiv1 = document.createElement('div');
+            hotSpotDiv1.className = 'hotSpot';
+            hotSpotDiv1.innerHTML = '<span></span><div class="des"><div class="img" style="background-image:url(p10.png)"></div><div class="fname"><span>95#绝缘瓷</span></div><div class="ft">☑ 95#高性能绝缘瓷材料；</div><div class="ft">☑ 一次成型，耐高电压；</div><div class="ft">☑ 绝缘效果显著；</div><div class="ft">☑ 结实耐用，安全更持久；</div></div>';
+            var hotSpotDiv2 = document.createElement('div');
+            hotSpotDiv2.className = 'hotSpot';
+            hotSpotDiv2.innerHTML = '<span></span><div class="des"><div class="img" style="background-image:url(p11.png)"></div><div class="fname"><span>LED数显</span></div><div class="ft">☑ 定制型智能LED数字显示屏；</div><div class="ft">☑ 实时动态显示，数据可视化；</div><div class="ft">☑ 精准显示实时电压、电流；</div><div class="ft">☑ 品牌产品，质量保证；</div></div>';
+            var hotSpotDiv3 = document.createElement('div');
+            hotSpotDiv3.className = 'hotSpot';
+            hotSpotDiv3.innerHTML = '<span></span><div class="des"><div class="img" style="background-image:url(p12.png)"></div><div class="fname"><span>加厚接油盘</span></div><div class="ft">☑ 加厚型可抽拉接油盘；</div><div class="ft">☑ 铜质加厚防雨帽；</div><div class="ft">☑ 人性化设计，防止油污积累；</div><div class="ft">☑ 防腐防锈，延长设备使用寿命；</div><div class="ft">☑ 清洗维护更便捷；</div></div>';
+            var hotSpotDiv4 = document.createElement('div');
+            hotSpotDiv4.className = 'hotSpot';
+            hotSpotDiv4.innerHTML = '<span></span><div class="des"><div class="img" style="background-image:url(p13.png)"></div><div class="fname"><span>净化电源</span></div><div class="ft">☑ 定制型智能电压电源控制器；</div><div class="ft">☑ 与电场匹配；</div><div class="ft">☑ 恒定电流输出；</div><div class="ft">☑ 可控压保护铝制电源；</div><div class="ft">☑ 工作稳定，安全系数高；</div></div>';
+            var hotSpotDiv5 = document.createElement('div');
+            hotSpotDiv5.className = 'hotSpot';
+            hotSpotDiv5.innerHTML = '<span></span><div class="des"><div class="img" style="background-image:url(p14.png)"></div><div class="fname"><span>电场机芯</span></div><div class="ft">☑ 电场高压采用1.5mm铝合金；</div><div class="ft">☑ 锯齿放电（放电密集均匀）；</div><div class="ft">☑ 低压区采用0.8mm铝合金；</div><div class="ft">☑ 极板间距7mm增加吸附面积；</div><div class="ft">☑ 专利极板电场技术；</div><div class="ft">☑ 设备净化率≥98%；</div></div>';
+
+            hotSpot[0] = new THREE.CSS2DObject(hotSpotDiv1);
+            hotSpot[0].position.set(25.5, 13.8, 5.5);
+            hotSpot[1] = new THREE.CSS2DObject(hotSpotDiv2);
+            hotSpot[1].position.set(27, 9.5, -7);
+            hotSpot[2] = new THREE.CSS2DObject(hotSpotDiv3);
+            hotSpot[2].position.set(23, -12, -1.3);
+            hotSpot[3] = new THREE.CSS2DObject(hotSpotDiv4);
+            hotSpot[3].position.set(25.5, 3.4, 7);
+            hotSpot[4] = new THREE.CSS2DObject(hotSpotDiv5);
+            hotSpot[4].position.set(2, 3, -20);
+            renderer2D = new THREE.CSS2DRenderer();
+            renderer2D.setSize( window.innerWidth, window.innerHeight );
+            renderer2D.domElement.id='hotWrap';
+            renderer2D.domElement.style.position = 'absolute';
+            renderer2D.domElement.style.top = 0;
+            renderer2D.domElement.style.backgroundColor = 0xff0000;
+            renderer2D.domElement.style.pointerEvents = 'none';
+            document.body.appendChild( renderer2D.domElement );
+            var hsp = [hotSpotDiv1,hotSpotDiv2,hotSpotDiv3,hotSpotDiv4,hotSpotDiv5], l=hsp.length;
+            ele = hsp[0];
+            for(var i =0;i<l;i++){
+                !(function(){
+                    var n = i;
+                    hsp[n].addEventListener('click',function(){
+                        if(ele===this){
+                            excEvent(document.getElementById('tool').children[1],'click');
+                            excEvent(document.getElementById('tool').children[1],'click');
+                            return;
+                        }
+                        var v = hotSpot[n].position;
+                        stpos = {x:camera.position.x, y:camera.position.y, z:camera.position.z};
+                        tween = new TWEEN.Tween(stpos)
+                                .to({x:v.x*4, y:v.y*4, z:v.z*4}, 1000)
+                                .easing(TWEEN.Easing.Quadratic.Out)
+                                .onStart(function(){
+                                    if(ele){
+                                        ele.className='hotSpot';
+                                    }
+                                    prep=nextp;
+                                    nextp=n;
+                                })
+                                .onUpdate(function() { 
+                                    camera.position.set(stpos.x,stpos.y,stpos.z);
+                                    if(parr[prep]){
+                                        myObjects.children[myObjects.children.length-parr[prep][0]].position[parr[prep][1]]+=parr[prep][2]*-1;
+                                    }
+                                    if(parr[nextp]){
+                                        myObjects.children[myObjects.children.length-parr[nextp][0]].position[parr[nextp][1]]+=parr[nextp][2];
+                                    }
+                                    timeRender();
+                                })
+                                .onComplete(function(){
+                                    ele = hsp[n];
+                                    ele.className='hotSpot active';
+                                    if(parr[prep]){
+                                        myObjects.children[myObjects.children.length-parr[prep][0]].position[parr[prep][1]]=parr[prep][3];
+                                    }
+                                })
+                                .start(); 
+                        TWEEN.update();
+                    },false)
+                })();
+            }
+        }
+
+        function initCamera() {
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 2, 20000);
+            camera.position.set(depos.x, depos.y, depos.z);
+            scene.add(camera);
+            scene.add(hotSpot[0]);
+            scene.add(hotSpot[1]);
+            scene.add(hotSpot[2]);
+            scene.add(hotSpot[3]);
+            scene.add(hotSpot[4]);
+        }
+
+        var cubeTexture;
+        function initScene() {
+            var cubeTextureLoader = new THREE.CubeTextureLoader();
+            cubeTexture = cubeTextureLoader.load( [
+                '00.jpg', '01.jpg',
+                '02.jpg', '03.jpg',
+                '04.jpg', '05.jpg'
+            ] );
+            scene = new THREE.Scene();
+        }
+
+
+        function initLight() {
+            scene.add(new THREE.AmbientLight(0xffffff));
+
+            light = new THREE.DirectionalLight(0xbbbbbb);
+            light.intensity = 0.6;
+            light.position.set(500, 40, 20 );
+            
+            spotLight=new THREE.SpotLight(0xaaaaaa);
+            spotLight.position.set(0,80,0);
+            //光源照射的方向
+            spotLight.angle=Math.PI/3;//光源的角度
+            spotLight.shadowCameraNear=2;
+            spotLight.shadowCameraFar=20;
+            spotLight.castShadow = true;
+            spotLight.shadowMapWidth = spotLight.shadowMapHeight = 1024*4;
+            spotLight.shadow.camera.top = 5;
+            spotLight.shadow.camera.bottom = -5;
+            spotLight.shadow.camera.left = -5;
+            spotLight.shadow.camera.right = 5;
+            spotLight.intensity = 0.8;
+            
+            spotLight.shadowCameraVisible=true;
+            camera.add(spotLight);
+            camera.add(light);
+        }
+
+        function initModel() {
+
+            var mtlLoader = new THREE.MTLLoader();
+
+            mtlLoader.load('2.mtl', function (material) {
+
+                var objLoader = new THREE.OBJLoader();
+
+                objLoader.setMaterials(material);
+
+                objLoader.load('2.obj', function (object) {
+                    myObjects = object;
+                    for(var i = 0;i<object.children.length;i++){
+                        object.children[i].material.opacity = 1;
+                        spotLight.target=object.children[i];
+                    }
+                    console.log('模型零件数：'+object.children.length);
+                    var dom = object.children.splice(0,1);
+                    object.scale.set(1, 1, 1);
+                    scene.add(object);
+                    THREE.DefaultLoadingManager.onLoad = function () {
+                        timeRender();
+                    };
+                    for(var i = 0;i<hotSpot.length;i++){
+                        if(parr[i]){
+                            parr[i].push(myObjects.children[myObjects.children.length-parr[i][0]].position[parr[i][1]]);
+                        }
+                    }
+                    document.getElementById('tool').children[0].addEventListener('click',function(){
+                        var op = 1-this.getAttribute('s');
+                        if(op){
+                             object.children.splice(0,0,dom[0]);
+                        }else{                         
+                             dom = object.children.splice(0,1);
+                        }
+
+                        this.setAttribute('s',op);
+                        timeRender();
+                    },false);
+                    document.getElementById('tool').children[1].addEventListener('click',function(){
+                        var e = document.getElementById('hotWrap');
+                        if(e){
+                            var st = 1-e.getAttribute('s');
+                            e.setAttribute('s',st);
+                            this.setAttribute('s',st);
+                            if(st==0){
+                                stpos = {x:camera.position.x, y:camera.position.y, z:camera.position.z};
+                                tween = new TWEEN.Tween(stpos)
+                                        .to({x:depos.x, y:depos.y, z:depos.z}, 1000)
+                                        .easing(TWEEN.Easing.Quadratic.Out)
+                                        .onStart(function(){
+                                            if(ele){
+                                                ele.className='hotSpot';
+                                                ele = null; 
+                                            }
+                                            prep=nextp;
+                                            nextp=null;
+                                        })
+                                        .onUpdate(function() { 
+                                            camera.position.set(stpos.x,stpos.y,stpos.z);
+                                            if(parr[prep]){
+                                                myObjects.children[myObjects.children.length-parr[prep][0]].position[parr[prep][1]]+=parr[prep][2]*-1;
+                                            }
+                                            timeRender();
+                                        })
+                                        .onComplete(function(){
+                                            if(parr[prep]){
+                                                myObjects.children[myObjects.children.length-parr[prep][0]].position[parr[prep][1]]=parr[prep][3];
+                                            }
+                                        })
+                                        .start();
+                                TWEEN.update();
+                            }else{
+                                timeRender();
+                            }
+                        }
+                    },false);
+                })
+
+            });
+
+        }
+
+        function initControls() {
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.enableZoom = true;
+            controls.autoRotate = false;
+            controls.autoRotateSpeed = 0.5;
+            controls.minDistance = 1;
+            controls.maxDistance = 2000;
+            controls.rotateSpeed = 0.5;
+            controls.addEventListener('change', function(){
+                timeRender();
+            });
+        }
+
+        //窗口变动触发的函数
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer2D.setSize(window.innerWidth, window.innerHeight);
+            timeRender();
+        }
+
+        function animate() {
+            if (renderEnabled) {
+                renderer.clear();
+                renderer.render(scene, camera);
+                renderer2D.render(scene, camera);
+                TWEEN.update();
+                controls.update();
+                
+            }
+            requestAnimationFrame(animate);
+        }
+
+        function draw() {
+            initRender();
+            initScene();
+            initCamera();
+            initLight();
+            initModel();
+            initControls();
+            animate();
+            window.onresize = onWindowResize;
+            window.onbeforeunload=function(){     
+            　　clearScene();
+            }
+        }
+
+        function timeRender() {
+            //设置为可渲染状态
+            renderEnabled = true;
+            //清除上次的延迟器
+            if (timeOut) {
+                clearTimeout(timeOut);
+            }
+         
+            timeOut = setTimeout(function () {
+                renderEnabled = false;
+            }, 100);
+        }
+
+        function clearScene(){
+            // 从scene中删除模型并释放内存
+            if(myObjects.length > 0){       
+                for(var i = 0; i< myObjects.length; i++){
+                    var currObj = myObjects[i];
+                    
+                    // 判断类型
+                    if(currObj instanceof THREE.Scene){
+                        var children = currObj.children;
+                        for(var i = 0; i< children.length; i++){
+                            deleteGroup(children[i]);
+                        }   
+                    }else{              
+                        deleteGroup(currObj);
+                    }
+                    scene.remove(currObj);
+                }
+            }
+        }
+
+        // 删除group，释放内存
+        function deleteGroup(group) {
+            //console.log(group);
+            if (!group) return;
+            // 删除掉所有的模型组内的mesh
+            group.traverse(function (item) {
+                if (item instanceof THREE.Mesh) {
+                    item.geometry.dispose(); // 删除几何体
+                    item.material.dispose(); // 删除材质
+                }
+            });
+        }
+
+        function excEvent(el, event) {
+            if (document.createEvent) {
+                var e = document.createEvent("MouseEvents");
+                e.initEvent(event, true, true);
+                el.dispatchEvent(e);
+            } else if (el.fireEvent) {
+                el.fireEvent('on'+event);
+            }
+        }
+</script>
+</html>  
